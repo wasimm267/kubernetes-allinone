@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sidecar-test
+spec:
+  volumes:
+    - name: shared-logs-data
+      emptyDir: {}
+  containers:
+    # This container writes logs to a shared volume
+    - name: main-container
+      image: busybox:latest
+      command: ["sh", "-c", "while true; do echo 'Hello Doston' >> /var/log/app.log; sleep 10; done"]
+      volumeMounts:
+        - name: shared-logs-data
+          mountPath: /var/log
+
+    # This container reads logs from the shared volume
+    - name: sidecar-container
+      image: busybox:latest
+      command: ["sh", "-c", "tail -f /var/log/app.log"]
+      volumeMounts:
+        - name: shared-logs-data
+          mountPath: /var/log
+

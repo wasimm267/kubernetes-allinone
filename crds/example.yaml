@@ -1,0 +1,9 @@
+kind: DevOpsBatch
+apiVersion: wasim.com/v1
+metadata:
+  name: wasim-batch-1
+
+spec:
+  name: Devops Zero To Hero
+  duration: 3 to 6 Months
+  mode: online

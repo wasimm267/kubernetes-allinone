@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: init-container
+spec:
+  restartPolicy: Never
+  initContainers:
+  - name: init-container
+    image: busybox:latest
+    command: ["sh", "-c", "echo 'initialisation started....'; sleep 10; echo 'initialisation completed.'"]
+  containers:
+  - name: main-container
+    image: busybox:latest
+    command: ["sh", "-c", "echo main container started && while true; do sleep 30; done"]
+

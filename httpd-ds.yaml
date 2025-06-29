@@ -1,0 +1,22 @@
+kind: DaemonSet
+apiVersion: apps/v1
+metadata:
+  name: httpd-ds
+  namespace: httpd
+
+spec:
+  selector:
+   matchLabels:
+     app: httpd
+
+  template:
+    metadata:
+      labels:
+        app: httpd
+    spec:
+      containers:
+      - name: httpd
+        image: httpd
+        ports:
+         - containerPort: 80
+

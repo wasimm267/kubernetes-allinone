@@ -1,0 +1,22 @@
+kind: Job
+apiVersion: batch/v1
+metadata:
+  name: demo-job
+  namespace: httpd
+
+spec:
+  completions: 1
+  parallelism: 1
+  template:
+    metadata: 
+     name: demo-task-job
+     labels:
+       app: batch-task
+
+    spec: 
+     containers:
+       - name: batch-container
+         image: busybox:latest
+         command: ["sh", "-c", " echo Done Wasim && sleep 10"]
+
+     restartPolicy: Never    

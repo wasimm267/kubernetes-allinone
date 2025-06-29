@@ -1,0 +1,44 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: minute-backup
+  namespace: httpd
+
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          name: minute-backup
+          labels:
+            app: minute_backup
+        spec:
+          containers:
+            - name: min-backup-con
+              image: busybox  # You need to specify an image!
+              command:
+                - sh
+                - -c
+                - >
+                  echo "Backup Started" ;
+                  mkdir -p /backup &&
+                  mkdir -p /data &&
+                  cp -r /demo-data /backup &&
+                  echo "Backup Completed"
+              volumeMounts:
+                - name: data-vol
+                  mountPath: /demo-data
+                - name: backup-vol
+                  mountPath: /backup
+          restartPolicy: OnFailure
+          volumes:
+            - name: data-vol
+              hostPath:
+                path: /demo-path
+                type: DirectoryOrCreate
+            - name: backup-vol
+              hostPath:
+                path: /backup-data
+                type: DirectoryOrCreate
+
