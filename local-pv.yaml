@@ -1,15 +1,12 @@
-kind: PersistentVolume
 apiVersion: v1
+kind: PersistentVolume
 metadata:
   name: local-pv
-  namespace: httpd
   labels:
     app: local
-
 spec:
   capacity:
     storage: 1Gi
-
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
