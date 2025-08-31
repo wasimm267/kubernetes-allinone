@@ -12,7 +12,8 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local-storage
   hostPath:
-    path: /mnt/dataMake sure the directory exists inside Minikube:
+    path: /mnt/data
+    #Make sure the directory exists inside Minikube:
 # Run these commands before running the yaml file 
 # minikube ssh
 #sudo mkdir -p /mnt/data
