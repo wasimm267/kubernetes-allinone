@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: load-generator
+  namespace: apache
+spec:
+  containers:
+  - name: curl
+    image: curlimages/curl
+    command: ["/bin/sh", "-c"]
+    args:
+      - |
+        while true; do
+          curl -s http://apache-service > /dev/null;
+        done
+
