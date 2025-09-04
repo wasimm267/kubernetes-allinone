@@ -58,8 +58,9 @@ http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kube
 ---
 
 ## Dashboard Screenshot
+<img width="1919" height="911" alt="Screenshot 2025-09-05 000308" src="https://github.com/user-attachments/assets/69a40f0c-47e1-486e-9030-a0a317c6f0bc" />
 
-![Kubernetes Dashboard](Screenshot 2025-09-05 000308.png)
+
 
 ---
 
